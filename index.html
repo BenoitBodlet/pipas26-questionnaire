@@ -802,26 +802,8 @@
             </div>
         </div>
 
-        <button onclick="envoyerMail()">📧 Envoyer par mail</button>
+        <button onclick="window.print()">📄 Imprimer ou Sauvegarder en PDF</button>
 
-<script>
-function envoyerMail() {
-  const destinataire = "benoit.bodlet@edu.ge.ch";
-
-
-  const nom = document.getElementById("nom")?.value || "";
-  const classe = document.getElementById("classe")?.value || "";
-  const reponse1 = document.getElementById("reponse1")?.value || "";
-  const reponse2 = document.getElementById("reponse2")?.value || "";
-
-
-  const sujet = encodeURIComponent("Questionnaire PIPAS26 de " + nom);
-  const corps = encodeURIComponent(
-    `Nom : ${nom}\nClasse : ${classe}\n\nRéponse 1 : ${reponse1}\nRéponse 2 : ${reponse2}\n\n(Envoyé automatiquement depuis le site PIPAS26)`
-  );
-
-
-  window.location.href = `mailto:${destinataire}?subject=${sujet}&body=${corps}`;
 }
 </script>
 
