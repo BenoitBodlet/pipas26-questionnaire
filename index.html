@@ -802,7 +802,31 @@
             </div>
         </div>
 
-        <button onclick="window.print()">📄 Imprimer ou Sauvegarder en PDF</button>
+        <button onclick="envoyerMail()">📧 Envoyer par mail</button>
+
+<script>
+function envoyerMail() {
+  // Ton adresse email ici :
+  const destinataire = "benoit.bodlet@edu.ge.ch";
+
+  // On suppose que tu as des champs de formulaire dans ton questionnaire
+  // avec des IDs comme 'nom', 'classe', 'reponse1', 'reponse2', etc.
+  const nom = document.getElementById("nom")?.value || "";
+  const classe = document.getElementById("classe")?.value || "";
+  const reponse1 = document.getElementById("reponse1")?.value || "";
+  const reponse2 = document.getElementById("reponse2")?.value || "";
+
+  // Tu peux ajuster le contenu du message selon tes besoins :
+  const sujet = encodeURIComponent("Questionnaire PIPAS26 de " + nom);
+  const corps = encodeURIComponent(
+    `Nom : ${nom}\nClasse : ${classe}\n\nRéponse 1 : ${reponse1}\nRéponse 2 : ${reponse2}\n\n(Envoyé automatiquement depuis le site PIPAS26)`
+  );
+
+  // On ouvre le client mail
+  window.location.href = `mailto:${destinataire}?subject=${sujet}&body=${corps}`;
+}
+</script>
+
         
         <div style="text-align: center; color: #666; padding: 20px; margin-top: 40px; border-top: 2px solid #eee;">
             <p><strong>PIPAS 26 - Biennale de photographie des écoles</strong></p>
