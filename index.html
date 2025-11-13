@@ -802,9 +802,30 @@
             </div>
         </div>
 
-        <button onclick="window.print()">📄 Imprimer ou Sauvegarder en PDF</button>
+        
+<button onclick="genererPDF()">📄 Générer un PDF</button>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function genererPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const nom = document.getElementById("nom")?.value || "Élève anonyme";
+  let contenu = `Questionnaire PIPAS26\nNom : ${nom}\n\n`;
+
+  document.querySelectorAll("textarea, input[type='text'], input[type='checkbox']:checked").forEach(el => {
+    const label = el.previousElementSibling ? el.previousElementSibling.innerText : el.name || el.id;
+    const valeur = el.type === "checkbox" ? "☑️ " + label : `${label} : ${el.value}`;
+    contenu += valeur + "\n";
+  });
+
+  doc.text(contenu, 10, 10);
+  doc.save(`Questionnaire_${nom}.pdf`);
 }
+</script>
+
 </script>
 
         
